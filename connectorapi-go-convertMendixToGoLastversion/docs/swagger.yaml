@@ -1,0 +1,2359 @@
+basePath: /
+definitions:
+  domain.AgreeMentBillingRequest:
+    properties:
+      AgreementNo:
+        maxLength: 16
+        type: string
+      CardCode:
+        maxLength: 2
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+    required:
+    - AgreementNo
+    - IDCardNo
+    type: object
+  domain.AgreeMentBillingResponse:
+    properties:
+      BillingAmount:
+        type: number
+      CreditCashingAvailableLimit:
+        type: number
+      CreditCashingFloorLimit:
+        type: number
+      CreditCashingOutstanding:
+        type: number
+      CreditShoppingAvailableLimit:
+        type: number
+      CreditShoppingFloorLimit:
+        type: number
+      CreditShoppingOutstanding:
+        type: number
+      DueDate:
+        type: integer
+      FullPaymentAmount:
+        type: number
+      InstallmentCurrent:
+        type: integer
+      InstallmentNo:
+        type: integer
+      MinPaymentAmount:
+        type: number
+      PaymentHistory:
+        type: string
+      SettlementDate:
+        type: integer
+      UnbilledAmount:
+        type: number
+    type: object
+  domain.AgreementListobj:
+    properties:
+      AgreementNo:
+        type: string
+      CustomerName:
+        type: string
+      Status:
+        type: string
+      TransactionDate:
+        type: integer
+    type: object
+  domain.AppCardListRq:
+    properties:
+      CardCode:
+        maxLength: 2
+        type: string
+      VirtualCardFlag:
+        maxLength: 1
+        type: string
+    type: object
+  domain.ApplyCardListobj:
+    properties:
+      CardApplyType:
+        type: integer
+      CardCode:
+        type: string
+      PrimaryCreditCard:
+        type: string
+      VirtualCardFlag:
+        type: string
+    type: object
+  domain.CheckApply2ndCardRqOBJ:
+    properties:
+      CardCode:
+        type: string
+    type: object
+  domain.CheckApply2ndCardRsOBJ:
+    properties:
+      CardCode:
+        type: string
+      ReasonCode:
+        type: string
+      ReasonDescription:
+        type: string
+      ResultCode:
+        type: string
+    type: object
+  domain.CheckApplyCondition2ndCardRequest:
+    properties:
+      CardList:
+        items:
+          $ref: '#/definitions/domain.CheckApply2ndCardRqOBJ'
+        type: array
+      Channel:
+        type: string
+      IDCardNo:
+        type: string
+      TotalOfApplyCard:
+        type: integer
+    required:
+    - Channel
+    - IDCardNo
+    type: object
+  domain.CheckApplyCondition2ndCardResponse:
+    properties:
+      CheckApply2ndCardList:
+        items:
+          $ref: '#/definitions/domain.CheckApply2ndCardRsOBJ'
+        type: array
+      HaveCardCR:
+        type: integer
+      HaveCardYC:
+        type: integer
+      IDCardNo:
+        type: string
+      MaximumCR:
+        type: integer
+      MaximumYC:
+        type: integer
+      TotalOfApplyCard:
+        type: integer
+    type: object
+  domain.CheckApplyConditionRequest:
+    properties:
+      ApplicationDate:
+        type: integer
+      ApplicationNo:
+        type: string
+      ApplyChannel:
+        type: string
+      Birthdate:
+        maximum: 99999999
+        minimum: 10000000
+        type: integer
+      BranchCode:
+        type: string
+      CardList_rq:
+        items:
+          $ref: '#/definitions/domain.ApplyCardListobj'
+        type: array
+      Channel:
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      SourceCode:
+        type: string
+      StaffCode:
+        type: string
+      SuppBirthdate:
+        type: integer
+      SuppIDCardNo:
+        type: string
+      TotalApplyCard:
+        type: integer
+    required:
+    - ApplicationNo
+    - ApplyChannel
+    - Birthdate
+    - IDCardNo
+    type: object
+  domain.CheckApplyConditionResponse:
+    properties:
+      ApplicationNo:
+        type: string
+      ReasonCode:
+        type: string
+      ReasonDescription:
+        type: string
+      Status:
+        type: string
+    type: object
+  domain.CheckRegisterRequest:
+    properties:
+      AgreementNo:
+        maxLength: 16
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      MobileNo:
+        maxLength: 10
+        type: string
+    required:
+    - IDCardNo
+    - MobileNo
+    type: object
+  domain.CheckRegisterResponse:
+    properties:
+      AgreementRegisterFlag:
+        type: string
+      CRRegisterFlag:
+        type: string
+      CustomerNameEN:
+        type: string
+      CustomerNameTH:
+        type: string
+      DYCRegisterFlag:
+        type: string
+      Email:
+        type: string
+      IDCardNo:
+        type: string
+      MobileNo:
+        type: string
+      Result:
+        type: string
+      ResultCode:
+        type: string
+    type: object
+  domain.CheckRegisterSocialRequest:
+    properties:
+      IDCardNo:
+        maxLength: 20
+        type: string
+    required:
+    - IDCardNo
+    type: object
+  domain.CheckRegisterSocialResponse:
+    properties:
+      IDCardNo:
+        type: string
+      MobileNo:
+        type: string
+    type: object
+  domain.CollectionDetailAgreement:
+    properties:
+      AgreementNo:
+        type: string
+      AssetPrice:
+        type: number
+      BeginSUEOSHDCharge:
+        type: number
+      BeginSUEOSInterestNet:
+        type: number
+      BeginSUEOSInterestVAT:
+        type: number
+      BeginSUEOSOtherFee:
+        type: number
+      BeginSUEOSPenalty:
+        type: number
+      BeginSUEOSPrincipalNet:
+        type: number
+      BeginSUEOSPrincipalVAT:
+        type: number
+      BeginSUEOSTotal:
+        type: number
+      BlackCaseDate:
+        type: integer
+      BlackCaseNo:
+        type: string
+      BlockCode:
+        type: string
+      CourtCode:
+        type: string
+      CourtName:
+        type: string
+      CurrentSUEOSHDCharge:
+        type: number
+      CurrentSUEOSInterestNet:
+        type: number
+      CurrentSUEOSInterestVAT:
+        type: number
+      CurrentSUEOSOtherFee:
+        type: number
+      CurrentSUEOSPenalty:
+        type: number
+      CurrentSUEOSPrincipalNet:
+        type: number
+      CurrentSUEOSPrincipalVAT:
+        type: number
+      CurrentSUEOSTotal:
+        type: number
+      ExpectDate:
+        type: integer
+      InstallmentAmount:
+        type: number
+      JudgeAmount:
+        type: number
+      JudgmentDate:
+        type: integer
+      JudgmentDetail:
+        type: string
+      JudgmentResultCode:
+        type: integer
+      JudgmentResultDescription:
+        type: string
+      LastPaymentDate:
+        type: integer
+      NoOfInstallment:
+        type: string
+      OutsourceID:
+        type: string
+      OutsourceName:
+        type: string
+      RedCaseDate:
+        type: integer
+      RedCaseNo:
+        type: string
+      SUESeqNo:
+        type: integer
+      SUEStatus:
+        type: integer
+      SUEStatusDescription:
+        type: string
+      SeqOfAgreement:
+        type: integer
+      TotalCurrentPerSUESeqNo:
+        type: number
+      TotalPaymentAmount:
+        type: number
+    type: object
+  domain.CollectionDetailRequest:
+    properties:
+      BlackCaseNo:
+        maxLength: 15
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      RedCaseNo:
+        maxLength: 15
+        type: string
+    required:
+    - IDCardNo
+    type: object
+  domain.CollectionDetailResponse:
+    properties:
+      AgreementList:
+        items:
+          $ref: '#/definitions/domain.CollectionDetailAgreement'
+        type: array
+      IDCardNo:
+        type: string
+      NoOfAgreement:
+        type: integer
+    type: object
+  domain.CollectionLogRequest:
+    properties:
+      AgreementNo:
+        maxLength: 16
+        type: string
+      InputDate:
+        maxLength: 8
+        type: string
+      InputTime:
+        maxLength: 6
+        type: string
+      LogRemark1:
+        maxLength: 120
+        type: string
+      LogRemark2:
+        maxLength: 120
+        type: string
+      LogRemark3:
+        maxLength: 120
+        type: string
+      LogRemark4:
+        maxLength: 120
+        type: string
+      LogRemark5:
+        maxLength: 120
+        type: string
+      OperatorID:
+        maxLength: 15
+        type: string
+      RemarkCode:
+        maxLength: 4
+        type: string
+    required:
+    - AgreementNo
+    - InputDate
+    - InputTime
+    - OperatorID
+    - RemarkCode
+    type: object
+  domain.CollectionLogResponse:
+    properties:
+      AgreementNo:
+        type: string
+      IDCardNo:
+        type: string
+    type: object
+  domain.ConsentListsobj:
+    properties:
+      ConsentCode:
+        type: string
+      ConsentForm:
+        type: string
+      ConsentFormVersion:
+        type: string
+      ConsentLanguage:
+        type: string
+      ConsentStatus:
+        type: string
+    type: object
+  domain.DBDetailBankListRq:
+    properties:
+      AccountNo:
+        maxLength: 20
+        type: string
+      BranchBank:
+        maxLength: 5
+        type: string
+      CounterNo:
+        maxLength: 4
+        type: string
+      RefAccountNo:
+        maxLength: 20
+        type: string
+    type: object
+  domain.DBDetailListRs:
+    properties:
+      ATMauthorize:
+        maxLength: 14
+        type: string
+      ApplicationDate:
+        maximum: 99999999
+        type: integer
+      AvailablePoint:
+        type: number
+      BillingAmount:
+        type: number
+      CardCode:
+        maxLength: 2
+        type: string
+      CardName:
+        maxLength: 30
+        type: string
+      CardStatus:
+        maxLength: 16
+        type: string
+      CreditCardNo:
+        maxLength: 16
+        type: string
+      CreditCashingAvailableLimit:
+        type: number
+      CreditCashingFloorLimit:
+        type: number
+      CreditCashingOutstanding:
+        type: number
+      CreditShoppingAvailableLimit:
+        type: number
+      CreditShoppingFloorLimit:
+        type: number
+      CreditShoppingOutstanding:
+        type: number
+      DigitalCardFlag:
+        maxLength: 1
+        type: string
+      FullPaymentAmount:
+        type: number
+      InstallmentCurrent:
+        maximum: 9
+        type: integer
+      InstallmentNo:
+        maximum: 999
+        type: integer
+      MinimumPaymentAmount:
+        type: number
+      PaidAmount:
+        type: number
+      ProductType:
+        maxLength: 2
+        type: string
+      RemainFullPayment:
+        type: number
+      RemainMinimumPayment:
+        type: number
+      UnbilledAmount:
+        type: number
+    type: object
+  domain.DBDetailTermsListRq:
+    properties:
+      TermsAcceptStatus:
+        maxLength: 2
+        type: string
+      TermsType:
+        maxLength: 20
+        type: string
+      TermsVersion:
+        maxLength: 10
+        type: string
+    type: object
+  domain.DashboardDetailRequest:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      Channel:
+        maxLength: 1
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+    type: object
+  domain.DashboardDetailResponse:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      DashboardDetailList_rs:
+        items:
+          $ref: '#/definitions/domain.DBDetailListRs'
+        type: array
+      DueDate:
+        maximum: 99999999
+        type: integer
+      IDCardNo:
+        maxLength: 20
+        type: string
+    type: object
+  domain.DashboardSummaryRequest:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      Channel:
+        maxLength: 1
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+    type: object
+  domain.DashboardSummaryResponse:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      BankList_rs:
+        items:
+          $ref: '#/definitions/domain.DBDetailBankListRq'
+        type: array
+      CreditCashingAvailableLimit:
+        type: number
+      CreditCashingFloorLimit:
+        type: number
+      CreditCashingOutstanding:
+        type: number
+      CreditShoppingAvailableLimit:
+        type: number
+      CreditShoppingFloorLimit:
+        type: number
+      CreditShoppingOutstanding:
+        type: number
+      DueDate:
+        maximum: 99999999
+        type: integer
+      IDCardNo:
+        maxLength: 20
+        type: string
+      MobileNo:
+        maxLength: 15
+        type: string
+      NameEN:
+        maxLength: 30
+        type: string
+      NameTH:
+        maxLength: 30
+        type: string
+      PendingPaymentStatus:
+        maxLength: 2
+        type: string
+      ROPCashingAvailableLimit:
+        type: number
+      ROPCashingFloorLimit:
+        type: number
+      ROPCashingOutstanding:
+        type: number
+      ROPShoppingAvailableLimit:
+        type: number
+      ROPShoppingFloorLimit:
+        type: number
+      ROPShoppingOutstanding:
+        type: number
+      RemainFullPayment:
+        type: number
+      RemainMinimumPayment:
+        type: number
+      TermsList_rs:
+        items:
+          $ref: '#/definitions/domain.DBDetailTermsListRq'
+        type: array
+      TotalFullPayment:
+        type: number
+      TotalMinimumPayment:
+        type: number
+      TotalPaidAmount:
+        type: number
+      YourCashAvailableLimit:
+        type: number
+      YourCashFloorLimit:
+        type: number
+      YourCashOutstanding:
+        type: number
+    type: object
+  domain.GetApplicationNoRequest:
+    properties:
+      ApplyChannel:
+        maxLength: 1
+        type: string
+      CardList_rq:
+        items:
+          $ref: '#/definitions/domain.AppCardListRq'
+        type: array
+      Channel:
+        maxLength: 1
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      TotalApplyCard:
+        maximum: 99
+        type: integer
+    required:
+    - ApplyChannel
+    - CardList_rq
+    - Channel
+    - IDCardNo
+    - TotalApplyCard
+    type: object
+  domain.GetApplicationNoResponse:
+    properties:
+      ApplicationDate:
+        maxLength: 8
+        type: string
+      ApplicationNo:
+        maxLength: 20
+        type: string
+      ApplicationTime:
+        maxLength: 6
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      ResultCode:
+        maxLength: 2
+        type: string
+      ResultDescription:
+        maxLength: 50
+        type: string
+    type: object
+  domain.GetBigCardInfoRequest:
+    properties:
+      AeonID:
+        maxLength: 44
+        type: string
+      BusinessCode:
+        maxLength: 2
+        type: string
+      CreditCardNo:
+        maxLength: 16
+        type: string
+      Reserve1:
+        maxLength: 20
+        type: string
+      TraceNumber:
+        maxLength: 20
+        type: string
+      TransactionDate:
+        maxLength: 8
+        type: string
+      TransactionTime:
+        maxLength: 6
+        type: string
+      TransactionType:
+        maxLength: 2
+        type: string
+    required:
+    - AeonID
+    - BusinessCode
+    - CreditCardNo
+    - TransactionDate
+    - TransactionTime
+    - TransactionType
+    type: object
+  domain.GetBigCardInfoResponse:
+    properties:
+      AeonID:
+        type: string
+      BusinessCode:
+        type: string
+      CreditCardNo:
+        type: string
+      DataEncrypt:
+        type: string
+      TransactionDate:
+        type: string
+      TransactionTime:
+        type: string
+      TransactionType:
+        type: string
+    type: object
+  domain.GetCardDelinquentRequest:
+    properties:
+      CardType:
+        maxLength: 2
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+    type: object
+  domain.GetCardDelinquentResponse:
+    properties:
+      DelinquentCountAll:
+        type: string
+      DelinquentCountFAFR:
+        type: string
+    type: object
+  domain.GetCardSalesRequest:
+    properties:
+      AgencyCodeCPCH:
+        type: string
+      CardBINno:
+        type: string
+      CardType:
+        type: string
+      IDCardNo:
+        type: string
+      MCCCodeCPCH:
+        type: string
+      SaleDateFrom:
+        type: string
+      SaleDateTo:
+        type: string
+      ShopCodeCPCH:
+        type: string
+      UsingTypeCA:
+        type: string
+      UsingTypeCPCH:
+        type: string
+    type: object
+  domain.GetCardSalesResponse:
+    properties:
+      CACardlessLastSaleDate:
+        type: string
+      CACardlessSaleAmount:
+        type: string
+      CACardlessSaleCount:
+        type: string
+      CACardlessSaleReversalAmount:
+        type: string
+      CACardlessSaleReversalCount:
+        type: string
+      CANormalLastSaleDate:
+        type: string
+      CANormalSaleAmount:
+        type: string
+      CANormalSaleCount:
+        type: string
+      CANormalSaleReversalAmount:
+        type: string
+      CANormalSaleReversalCount:
+        type: string
+      CHLastSaleDate:
+        type: string
+      CHSaleAmount:
+        type: string
+      CHSaleCount:
+        type: string
+      CHSaleReversalAmount:
+        type: string
+      CHSaleReversalCount:
+        type: string
+      CPLastSaleDate:
+        type: string
+      CPSaleAmount:
+        type: string
+      CPSaleCount:
+        type: string
+      CPSaleReversalAmount:
+        type: string
+      CPSaleReversalCount:
+        type: string
+      LastSaleDate:
+        type: string
+      TotalFAAmount:
+        type: string
+      TotalFACount:
+        type: string
+      TotalFRAmount:
+        type: string
+      TotalFRCount:
+        type: string
+      TotalSaleAmount:
+        type: string
+      TotalSaleCount:
+        type: string
+    type: object
+  domain.GetCustomerInfoMobileNoRequest:
+    properties:
+      mobileno:
+        maxLength: 20
+        type: string
+    required:
+    - mobileno
+    type: object
+  domain.GetCustomerInfoMobileNoResponse:
+    properties:
+      fraudflag:
+        type: string
+      mobileappflag:
+        type: string
+      mobileno:
+        type: string
+      resultcode:
+        type: string
+      sweetheartflag:
+        type: string
+      vvipflag:
+        type: string
+    type: object
+  domain.GetCustomerInfoRequest:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      AgreementNo:
+        maxLength: 16
+        type: string
+      Channel:
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      Mode:
+        maxLength: 1
+        type: string
+      SNSNo:
+        maxLength: 20
+        type: string
+      UserRef:
+        maxLength: 20
+        type: string
+    type: object
+  domain.GetCustomerInfoResponse001:
+    properties:
+      CustomerNameENG:
+        type: string
+      CustomerNameTH:
+        type: string
+      IDCardNo:
+        type: string
+      MobileNo:
+        type: string
+    type: object
+  domain.GetCustomerInfoResponse003:
+    properties:
+      Age:
+        type: integer
+      AutoPayAccountNo:
+        type: string
+      AutoPayBankName:
+        type: string
+      Birthdate:
+        type: integer
+      BusinessType:
+        type: string
+      BusinessTypeDescription:
+        type: string
+      CustomerGroup:
+        type: string
+      CustomerNameENG:
+        type: string
+      CustomerNameTH:
+        type: string
+      DebtReferenceMobilePhone:
+        type: string
+      DebtReferenceName:
+        type: string
+      DebtReferencePhone:
+        type: string
+      DebtReferencePhoneExtension:
+        type: string
+      DebtReferenceRelationship:
+        type: string
+      EducationCode:
+        type: string
+      EducationDescription:
+        type: string
+      EmailAddress:
+        type: string
+      EmploymentStatus:
+        type: string
+      FoundDataFlag:
+        type: string
+      Gender:
+        type: integer
+      HomeAddress:
+        type: string
+      HomeDistrict:
+        type: string
+      HomeFloor:
+        type: string
+      HomeMoo:
+        type: string
+      HomeNo:
+        type: string
+      HomePhone:
+        type: string
+      HomePhoneExtension:
+        type: string
+      HomeProvince:
+        type: string
+      HomeRoad:
+        type: string
+      HomeRoom:
+        type: string
+      HomeSoi:
+        type: string
+      HomeStatus:
+        type: integer
+      HomeSubDistrict:
+        type: string
+      HomeVillageBuilding:
+        type: string
+      HomeZip:
+        type: integer
+      HouseRegistrationCode:
+        type: integer
+      HouseRegistrationHome:
+        type: string
+      HouseRegistrationHomeZip:
+        type: integer
+      IDCardNo:
+        type: string
+      JobTypeCode:
+        type: integer
+      JobTypeSubCode:
+        type: string
+      LivingPeriod:
+        type: string
+      MailTo:
+        type: string
+      MarriageStatus:
+        type: integer
+      MobileNo:
+        type: string
+      NamePreFixEN:
+        type: string
+      OfficeAddress:
+        type: string
+      OfficeDistrict:
+        type: string
+      OfficeExtension:
+        type: string
+      OfficeFloor:
+        type: string
+      OfficeMobilePhone:
+        type: string
+      OfficeMoo:
+        type: string
+      OfficeName:
+        type: string
+      OfficeNo:
+        type: string
+      OfficePhone:
+        type: string
+      OfficeProvince:
+        type: string
+      OfficeRoad:
+        type: string
+      OfficeRoom:
+        type: string
+      OfficeSection:
+        type: string
+      OfficeSoi:
+        type: string
+      OfficeSubDistrict:
+        type: string
+      OfficeVillageBuilding:
+        type: string
+      OfficeZip:
+        type: integer
+      OtherIncome:
+        type: number
+      OtherIncomeResource:
+        type: string
+      OtherIncomeResourceDescription:
+        type: string
+      OtherJobDescription:
+        type: string
+      PaymentType:
+        type: string
+      ReferenceExtension:
+        type: string
+      ReferenceName:
+        type: string
+      ReferencePhone:
+        type: string
+      ReferenceRelationship:
+        type: string
+      Salary:
+        type: number
+      SourceOfOtherIncomeCountry:
+        type: string
+      SpouseName:
+        type: string
+      SpousePhone:
+        type: string
+      SpousePhoneExtension:
+        type: string
+      StayWith:
+        type: integer
+      TimeToContact:
+        type: string
+      WorkingPeriod:
+        type: string
+    type: object
+  domain.GetCustomerInfoResponse004:
+    properties:
+      AEONID:
+        type: string
+      Birthdate:
+        type: string
+      CustomerNameENG:
+        type: string
+      CustomerNameTH:
+        type: string
+      Email:
+        type: string
+      MemberStatus:
+        type: string
+      MobileNo:
+        type: string
+      Nationality:
+        type: string
+      Sex:
+        type: string
+    type: object
+  domain.GetDealerAgreementRequest:
+    properties:
+      AgentCode:
+        maxLength: 8
+        type: string
+      AgreementNo:
+        maxLength: 12
+        type: string
+      MarketingCode:
+        maxLength: 10
+        type: string
+      TransactionDateFrom:
+        maximum: 99999999
+        minimum: 10000000
+        type: integer
+      TransactionDateTo:
+        maximum: 99999999
+        minimum: 10000000
+        type: integer
+    type: object
+  domain.GetDealerAgreementResponse:
+    properties:
+      AgentCode:
+        type: string
+      AgreementList:
+        items:
+          $ref: '#/definitions/domain.AgreementListobj'
+        type: array
+      AgreementNo:
+        type: string
+      MarketingCode:
+        type: string
+      TotalAgreement:
+        type: integer
+      TransactionDateFrom:
+        type: integer
+      TransactionDateTo:
+        type: integer
+    type: object
+  domain.GetDealerCommissionRequest:
+    properties:
+      AgentCode:
+        maxLength: 8
+        type: string
+      AgreementNo:
+        maxLength: 12
+        type: string
+      CommissionCode:
+        maxLength: 8
+        type: string
+      MarketingCode:
+        maxLength: 10
+        type: string
+    required:
+    - AgreementNo
+    - CommissionCode
+    type: object
+  domain.GetDealerCommissionResponse:
+    properties:
+      AgentCategory:
+        type: string
+      AgentCode:
+        type: string
+      AgreementNo:
+        type: string
+      CommissionCode:
+        type: string
+      GrandTotalCommission:
+        type: number
+      MarketingCode:
+        type: string
+      NetTotalCommission:
+        type: number
+      TotalCommission:
+        type: number
+      VAT:
+        type: number
+      VATRate:
+        type: number
+      WHTRate:
+        type: number
+      WHTTax:
+        type: number
+    type: object
+  domain.GetRedbookInfoRequest:
+    properties:
+      AgentCode:
+        maxLength: 8
+        type: string
+      Brand:
+        maxLength: 30
+        type: string
+      CarMonth:
+        maximum: 12
+        minimum: 1
+        type: integer
+      CarYear:
+        maximum: 2100
+        minimum: 1500
+        type: integer
+      EffectiveMonth:
+        maximum: 12
+        minimum: 1
+        type: integer
+      EffectiveYear:
+        maximum: 2100
+        minimum: 1500
+        type: integer
+      MarketingCode:
+        maxLength: 10
+        type: string
+      Model:
+        maxLength: 30
+        type: string
+      SubModel:
+        maxLength: 100
+        type: string
+    required:
+    - Brand
+    - Model
+    - SubModel
+    type: object
+  domain.GetRedbookInfoResponse:
+    properties:
+      AgentCode:
+        type: string
+      AvgRetail:
+        type: number
+      AvgWholesale:
+        type: number
+      Brand:
+        type: string
+      CarMonth:
+        type: integer
+      CarYear:
+        type: integer
+      EffectiveMonth:
+        type: integer
+      EffectiveYear:
+        type: integer
+      GoodRetail:
+        type: number
+      GoodWholesale:
+        type: number
+      MarketingCode:
+        type: string
+      Model:
+        type: string
+      NewPrice:
+        type: number
+      SubModel:
+        type: string
+      VehicleCode:
+        type: string
+    type: object
+  domain.MobileCardListRq:
+    properties:
+      CardCode:
+        maxLength: 2
+        type: string
+      CardNo:
+        maxLength: 16
+        type: string
+    required:
+    - CardCode
+    - CardNo
+    type: object
+  domain.MobileCardListRs:
+    properties:
+      CardCode:
+        maxLength: 2
+        type: string
+      CardNo:
+        maxLength: 16
+        type: string
+      CardType:
+        maxLength: 2
+        type: string
+      DigitalCardFlag:
+        maxLength: 1
+        type: string
+      ExpireDate:
+        maximum: 8
+        type: integer
+      FirstConfirmDate:
+        type: integer
+      FirstEmbossDate:
+        type: integer
+      HoldCode:
+        maxLength: 2
+        type: string
+      SendMode:
+        type: string
+    type: object
+  domain.MobileFullPanRequest:
+    properties:
+      CardList_rq:
+        items:
+          $ref: '#/definitions/domain.MobileCardListRq'
+        type: array
+      Channel:
+        maxLength: 1
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      TotalCard:
+        maximum: 9999
+        type: integer
+    required:
+    - CardList_rq
+    - Channel
+    - IDCardNo
+    type: object
+  domain.MobileFullPanResponse:
+    properties:
+      CardList_rs:
+        items:
+          $ref: '#/definitions/domain.MobileCardListRs'
+        type: array
+      IDCardNo:
+        maxLength: 20
+        type: string
+      TotalCard:
+        maximum: 9999
+        type: integer
+    type: object
+  domain.MyCardListAll:
+    properties:
+      CardCode:
+        type: string
+      CardStatus:
+        type: string
+      CardType:
+        type: string
+      CashingLimit:
+        type: integer
+      CreditCardNo:
+        type: string
+      ExpireDate:
+        type: integer
+      FirstConfirmDate:
+        type: integer
+      FirstEmbossDate:
+        type: integer
+      HoldCode:
+        type: string
+      ProductType:
+        type: string
+      RetreatCode:
+        type: string
+      SendMode:
+        type: string
+      ShoppingLimit:
+        type: integer
+    type: object
+  domain.MyCardListNormal:
+    properties:
+      BusinessCode:
+        type: string
+      CardName:
+        type: string
+      CardStatus:
+        type: string
+      CreditCardNo:
+        type: string
+      DigitalCardFlag:
+        description: "DYCA \t                      string \t`json:\"DYCA\"`"
+        type: string
+      ExpireDate:
+        type: string
+      ProductType:
+        type: string
+    type: object
+  domain.MyCardRequest:
+    properties:
+      Channel:
+        type: string
+      Mode:
+        type: string
+      SNSNo:
+        type: string
+      UserRef:
+        type: string
+    type: object
+  domain.MyCardResponseAll:
+    properties:
+      CardList:
+        items:
+          $ref: '#/definitions/domain.MyCardListAll'
+        type: array
+      CustomerNameEN:
+        type: string
+      CustomerNameTH:
+        type: string
+      IDCardNo:
+        type: string
+      TotalCreditCard:
+        type: integer
+    type: object
+  domain.MyCardResponseNormal:
+    properties:
+      CardList:
+        items:
+          $ref: '#/definitions/domain.MyCardListNormal'
+        type: array
+      IDCardNo:
+        type: string
+      TotalCreditCard:
+        type: integer
+    type: object
+  domain.SubmitCardApplicationRequest:
+    properties:
+      ApplicationDate:
+        maxLength: 8
+        type: string
+      ApplicationNo:
+        maxLength: 20
+        type: string
+      ApplyChannel:
+        maxLength: 1
+        type: string
+      BranchCode:
+        maxLength: 4
+        type: string
+      CardList_rq:
+        items:
+          $ref: '#/definitions/domain.SubmitCardListRq'
+        type: array
+      Channel:
+        maxLength: 1
+        type: string
+      IDCardNo:
+        maxLength: 20
+        type: string
+      MailTo:
+        maxLength: 1
+        type: string
+      SourceCode:
+        maxLength: 8
+        type: string
+      StaffCode:
+        maxLength: 7
+        type: string
+      TotalApplyCard:
+        maximum: 99
+        type: integer
+    required:
+    - ApplicationDate
+    - ApplicationNo
+    - ApplyChannel
+    - CardList_rq
+    - Channel
+    - IDCardNo
+    - MailTo
+    - SourceCode
+    - TotalApplyCard
+    type: object
+  domain.SubmitCardApplicationResponse:
+    properties:
+      ApplicationDate:
+        maxLength: 8
+        type: string
+      ApplicationNo:
+        maxLength: 20
+        type: string
+      CardList_rs:
+        items:
+          $ref: '#/definitions/domain.SubmitCardListRs'
+        type: array
+      IDCardNo:
+        maxLength: 20
+        type: string
+      ProgramID:
+        maxLength: 10
+        type: string
+      ResultCode:
+        maxLength: 2
+        type: string
+      ResultDate:
+        maxLength: 8
+        type: string
+      ResultDescription:
+        maxLength: 50
+        type: string
+      ResultTime:
+        maxLength: 6
+        type: string
+      TotalApplyCard:
+        maximum: 99
+        type: integer
+    type: object
+  domain.SubmitCardListRq:
+    properties:
+      CardCode:
+        maxLength: 2
+        type: string
+      VirtualCardFlag:
+        maxLength: 1
+        type: string
+    type: object
+  domain.SubmitCardListRs:
+    properties:
+      CardCode:
+        maxLength: 2
+        type: string
+      MaximumLimit:
+        type: number
+      MemberTempNo:
+        maxLength: 16
+        type: string
+      PINNumber:
+        maxLength: 12
+        type: string
+      ReasonCode:
+        maxLength: 2
+        type: string
+      Remark1:
+        maxLength: 30
+        type: string
+      Remark2:
+        maxLength: 30
+        type: string
+      ResultCode:
+        maxLength: 1
+        type: string
+    type: object
+  domain.UpdateConsentRequest:
+    properties:
+      ATMNo:
+        maxLength: 5
+        type: string
+      ActionChannel:
+        maxLength: 3
+        type: string
+      ActionDateTime:
+        maxLength: 14
+        type: string
+      ApplicationNo:
+        maxLength: 20
+        type: string
+      ApplicationVersion:
+        maxLength: 13
+        type: string
+      BranchCode:
+        maxLength: 4
+        type: string
+      Channel:
+        maxLength: 1
+        type: string
+      ConsentLists:
+        items:
+          $ref: '#/definitions/domain.ConsentListsobj'
+        type: array
+      IDCardNo:
+        maxLength: 20
+        type: string
+      IPAddress:
+        maxLength: 50
+        type: string
+      TotalOfConsentCode:
+        maximum: 2
+        type: integer
+      VoicePath:
+        maxLength: 150
+        type: string
+    required:
+    - ActionChannel
+    - ActionDateTime
+    - Channel
+    - IDCardNo
+    - IPAddress
+    - TotalOfConsentCode
+    type: object
+  domain.UpdateConsentResponse:
+    properties:
+      Status:
+        type: string
+    type: object
+  domain.UpdateStatusRequest:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      Agreement:
+        maxLength: 12
+        type: string
+      Status:
+        maxLength: 1
+        type: string
+    required:
+    - AEONID
+    - Agreement
+    - Status
+    type: object
+  domain.UpdateStatusResponse:
+    properties:
+      AEONID:
+        maxLength: 20
+        type: string
+      Agreement:
+        maxLength: 12
+        type: string
+    type: object
+host: 10.254.97.103:8082
+info:
+  contact:
+    email: sye@aeon.co.th
+    name: SYE
+    url: https://aeon.co.th
+  description: This is the API Gateway for ConnectorAPI.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Connector API Gateway
+  version: "1.0"
+paths:
+  /Api/Agreement/AgreeMentBilling:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.AgreeMentBillingRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.AgreeMentBillingResponse'
+      tags:
+      - Agreement
+  /Api/Agreement/UpdateStatus:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.UpdateStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.UpdateStatusResponse'
+      tags:
+      - Agreement
+  /Api/Application/GetApplicationNo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetApplicationNoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetApplicationNoResponse'
+      tags:
+      - Application
+  /Api/Application/SubmitCardApplication:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.SubmitCardApplicationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.SubmitCardApplicationResponse'
+      tags:
+      - Application
+  /Api/Collection/CollectionDetail:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: Body Request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CollectionDetailRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CollectionDetailResponse'
+      tags:
+      - Collection
+  /Api/Collection/CollectionLog:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: Body Request
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CollectionLogRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CollectionLogResponse'
+      tags:
+      - Collection
+  /Api/Common/CheckApplyCondition/ApplyCard:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CheckApplyConditionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CheckApplyConditionResponse'
+      tags:
+      - Common
+  /Api/Common/CheckApplyCondition/SecondCard:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CheckApplyCondition2ndCardRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CheckApplyCondition2ndCardResponse'
+      tags:
+      - Common
+  /Api/Common/GetCustomerInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetCustomerInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Other and Mode F
+          schema:
+            $ref: '#/definitions/domain.GetCustomerInfoResponse004'
+      tags:
+      - Common
+  /Api/Consent/UpdateConsent:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.UpdateConsentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.UpdateConsentResponse'
+      tags:
+      - Consent
+  /Api/CreditCard/GetBigCardInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetBigCardInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetBigCardInfoResponse'
+      tags:
+      - CreditCard
+  /Api/CreditCard/GetCardDelinquent:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetCardDelinquentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetCardDelinquentResponse'
+      tags:
+      - CreditCard
+  /Api/CreditCard/GetCardSales:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetCardSalesRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetCardSalesResponse'
+      tags:
+      - CreditCard
+  /Api/Mobile/DashboardDetail:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.DashboardDetailRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.DashboardDetailResponse'
+      tags:
+      - Mobile
+  /Api/Mobile/DashboardSummary:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.DashboardSummaryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.DashboardSummaryResponse'
+      tags:
+      - Mobile
+  /Api/Mobile/MobileFullPAN:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.MobileFullPanRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.MobileFullPanResponse'
+      tags:
+      - Mobile
+  /Api/Register/CheckRegister:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CheckRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CheckRegisterResponse'
+      tags:
+      - Register
+  /Api/Register/CheckRegisterSocial:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.CheckRegisterSocialRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.CheckRegisterSocialResponse'
+      tags:
+      - Register
+  /Api/SelfService/MyCard:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.MyCardRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Mode All
+          schema:
+            $ref: '#/definitions/domain.MyCardResponseAll'
+      tags:
+      - SelfService
+  /Api/customer/GetCustomerInfoMobileNo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetCustomerInfoMobileNoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetCustomerInfoMobileNoResponse'
+      tags:
+      - customer
+  /Api/uhp/GetDealerCommission:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetDealerCommissionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetDealerCommissionResponse'
+      tags:
+      - Uhp
+  /Api/uhp/GetRedbookInfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetRedbookInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetRedbookInfoResponse'
+      tags:
+      - Uhp
+  /Api/uhp/v:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: API key
+        in: header
+        name: Api-Key
+        type: string
+      - description: DeviceOS
+        in: header
+        name: Api-DeviceOS
+        type: string
+      - description: DeviceOS
+        in: header
+        name: DeviceOS
+        type: string
+      - description: Channel
+        in: header
+        name: Api-Channel
+        type: string
+      - description: RequestID
+        in: header
+        name: Api-RequestID
+        type: string
+      - description: RequestID
+        in: header
+        name: RequestID
+        type: string
+      - description: BodyRequest
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/domain.GetDealerAgreementRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.GetDealerAgreementResponse'
+      tags:
+      - Uhp
+schemes:
+- http
+- https
+swagger: "2.0"
