@@ -1,0 +1,27 @@
+[
+  {
+    "key": ["IQARRf8ZhKChCN0ODn0BHQF4cBodzi7z"],
+    "clientName": "DebtMediation",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/Collection/CollectionDetail",
+      "POST:/Api/Collection/CollectionLog"
+    ]
+  },
+  {
+    "key": ["kmIQxCNXrzAIFmfEqwu9IzYYDSiyP6Pu"],
+    "clientName": "MobileApp",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/Agreement/UpdateStatus"
+    ]
+  },
+  {
+    "key": ["Quzg2jndLZnw0jL3o0VZ5rqbS3Czxmze"],
+    "clientName": "Pico",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/customer/checkaeoncustomer"
+    ]
+  }
+]
