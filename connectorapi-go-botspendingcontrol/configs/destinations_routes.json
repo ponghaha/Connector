@@ -1,0 +1,47 @@
+{
+  "destinations": {
+    "systemI": {
+      "type": "tcp",
+      "ip": "192.168.129.2",
+      "ports": {
+        "CollectionDetail":                 ["40130"],
+        "CollectionLog":                    ["40130"],
+        "UpdateAgreementStatus":            ["40110", "40111", "40112", "40113", "40114", "40115", "40116", "40117", "40118", "40119"],
+        "GetSpendingControl":               ["40110", "40111", "40112", "40113", "40114", "40115", "40117", "40118", "40119"],
+        "UpdateSpendingControl":               ["40110", "40111", "40112", "40113", "40114", "40115", "40117", "40118", "40119"]
+      }
+    }
+  },
+  "routes": {
+    "POST:/Api/Collection/CollectionDetail": {
+      "System": "AEON_WF",
+      "Service": "INQ_CUST_COSINF",
+      "Format": "001",
+      "RequestLength": "00020"
+    },
+    "POST:/Api/Collection/CollectionLog": {
+      "System": "AEON_WF",
+      "Service": "UPD_CUST_COSRMK",
+      "Format": "001",
+      "RequestLength": "00649"
+    },
+    "POST:/Api/Agreement/UpdateStatus": {
+      "System": "MOB_APP",
+      "Service": "UPD_TERM_APPSTS",
+      "Format": "001",
+      "RequestLength": "00033"
+    },
+    "POST:/Api/CreditCard/GetSpendingControl": {
+      "System": "MOB_APP",
+      "Service": "",
+      "Format": "001",
+      "RequestLength": ""
+    },
+    "POST:/Api/CreditCard/UpdateSpendingControl": {
+      "System": "MOB_APP",
+      "Service": "",
+      "Format": "001",
+      "RequestLength": ""
+    }
+  }
+}

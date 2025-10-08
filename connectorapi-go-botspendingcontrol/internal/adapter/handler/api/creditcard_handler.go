@@ -1,0 +1,180 @@
+package handler
+
+import (
+	"net/http"
+	"time"
+	
+	"connectorapi-go/internal/adapter/utils"
+	"connectorapi-go/internal/core/domain"
+	"connectorapi-go/pkg/config"
+	appError "connectorapi-go/pkg/error"
+	elkLog "connectorapi-go/internal/adapter/client/elk"
+
+	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
+
+	"go.uber.org/zap"
+)
+
+// creditCardService defines the interface
+type creditCardService interface {
+	GetSpendingControl(c *gin.Context, reqData domain.GetSpendingControlRequest) domain.GetSpendingControlResult
+	UpdateSpendingControl(c *gin.Context, reqData domain.UpdateSpendingControlRequest) domain.UpdateSpendingControlResult
+}
+
+// creditCardHandler handles all customer-related API requests
+type creditCardHandler struct {
+	service   creditCardService
+	validator *validator.Validate
+	logger    *zap.SugaredLogger
+	apikey    *utils.APIKeyRepository
+	config    *config.Config
+}
+
+// NewCreditCardHandler creates a new instance of creditCardHandler
+func NewCreditCardHandler(s creditCardService, logger *zap.SugaredLogger, apikey *utils.APIKeyRepository, cfg *config.Config) *creditCardHandler {
+	return &creditCardHandler{
+		service:   s,
+		validator: validator.New(),
+		logger:    logger,
+		apikey:    apikey,
+		config:    cfg,
+	}
+}
+
+// RegisterRoutes registers all routes related to CreditCard to the router group
+func (h *creditCardHandler) RegisterRoutes(rg *gin.RouterGroup) {
+	creditCardRoutes := rg.Group("/CreditCard")
+	{
+		creditCardRoutes.POST("/GetSpendingControl", h.GetSpendingControl)
+		creditCardRoutes.POST("/UpdateSpendingControl", h.UpdateSpendingControl)
+	}
+}
+
+// GetSpendingControl godoc
+// @Tags         CreditCard 
+// @Accept       json
+// @Produce      json
+// @Param        Api-Key              header    string                      false  "API key"
+// @Param        Api-DeviceOS         header    string                      false  "DeviceOS"
+// @Param        Api-Channel          header    string                      false  "Channel"
+// @Param        Api-RequestID        header    string                      false  "RequestID"
+// @Param        request              body      domain.GetSpendingControlRequest  false  "BodyRequest"
+// @Success      200  {object}        domain.GetSpendingControlResponse
+// @Router       /Api/CreditCard/GetSpendingControl [post]
+func (h *creditCardHandler) GetSpendingControl(c *gin.Context) {
+	var req domain.GetSpendingControlRequest
+	timeNow := time.Now()
+	var logList []string
+	serviceName := "GetSpendingControl"
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		handleErrorResponse(c, appError.ErrService)
+		return
+	}
+
+	appErr := ValidateHeaders(c, c.Request.Method, c.FullPath(), h.apikey, h.logger)
+	if appErr != nil {
+		handleErrorResponse(c, appErr)
+		if !elkLog.FinalELKLog(c, &logList, timeNow, &req, "", appErr, serviceName, "", "", nil, h.logger, h.config.ELKPath, handleErrorResponse) {
+			return
+		}
+		return
+	}
+
+	if err := h.validator.Struct(req); err != nil {
+    	appErr := HandleValidationError(err)
+		handleErrorResponse(c, appErr)
+		if appErr.ErrorCode == "SYS500" {
+			return
+		}
+		if !elkLog.FinalELKLog(c, &logList, timeNow, &req, "", appErr, serviceName, "", "", nil, h.logger, h.config.ELKPath, handleErrorResponse) {
+			return
+		}
+    	return
+	}
+
+	getSpendingControlResult := h.service.GetSpendingControl(c, req)
+	if getSpendingControlResult.AppError != nil {
+		handleErrorResponse(c, getSpendingControlResult.AppError)
+		return
+	}
+
+	var responseError *appError.AppError
+	if getSpendingControlResult.DomainError != nil {
+		responseError = getSpendingControlResult.DomainError
+	}
+	if !elkLog.FinalELKLog(getSpendingControlResult.GinCtx, &logList, getSpendingControlResult.Timestamp, req, getSpendingControlResult.Response, getSpendingControlResult.DomainError, getSpendingControlResult.ServiceName, getSpendingControlResult.UserToken, "", []string{getSpendingControlResult.LogLine1}, h.logger, h.config.ELKPath, handleErrorResponse) {
+		return
+	}
+	if responseError != nil {
+		handleErrorResponse(c, responseError)
+		return
+	}
+
+	c.JSON(http.StatusOK, getSpendingControlResult.Response)
+}
+
+// UpdateSpendingControl godoc
+// @Tags         CreditCard 
+// @Accept       json
+// @Produce      json
+// @Param        Api-Key              header    string                      false  "API key"
+// @Param        Api-DeviceOS         header    string                      false  "DeviceOS"
+// @Param        Api-Channel          header    string                      false  "Channel"
+// @Param        Api-RequestID        header    string                      false  "RequestID"
+// @Param        request              body      domain.UpdateSpendingControlRequest  false  "BodyRequest"
+// @Success      200  {object}        domain.UpdateSpendingControlResponse
+// @Router       /Api/CreditCard/UpdateSpendingControl [post]
+func (h *creditCardHandler) UpdateSpendingControl(c *gin.Context) {
+	var req domain.UpdateSpendingControlRequest
+	timeNow := time.Now()
+	var logList []string
+	serviceName := "UpdateSpendingControl"
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		handleErrorResponse(c, appError.ErrService)
+		return
+	}
+
+	appErr := ValidateHeaders(c, c.Request.Method, c.FullPath(), h.apikey, h.logger)
+	if appErr != nil {
+		handleErrorResponse(c, appErr)
+		if !elkLog.FinalELKLog(c, &logList, timeNow, &req, "", appErr, serviceName, "", "", nil, h.logger, h.config.ELKPath, handleErrorResponse) {
+			return
+		}
+		return
+	}
+
+	if err := h.validator.Struct(req); err != nil {
+    	appErr := HandleValidationError(err)
+		handleErrorResponse(c, appErr)
+		if appErr.ErrorCode == "SYS500" {
+			return
+		}
+		if !elkLog.FinalELKLog(c, &logList, timeNow, &req, "", appErr, serviceName, "", "", nil, h.logger, h.config.ELKPath, handleErrorResponse) {
+			return
+		}
+    	return
+	}
+
+	updateSpendingControlResult := h.service.UpdateSpendingControl(c, req)
+	if updateSpendingControlResult.AppError != nil {
+		handleErrorResponse(c, updateSpendingControlResult.AppError)
+		return
+	}
+
+	var responseError *appError.AppError
+	if updateSpendingControlResult.DomainError != nil {
+		responseError = updateSpendingControlResult.DomainError
+	}
+	if !elkLog.FinalELKLog(updateSpendingControlResult.GinCtx, &logList, updateSpendingControlResult.Timestamp, req, updateSpendingControlResult.Response, updateSpendingControlResult.DomainError, updateSpendingControlResult.ServiceName, updateSpendingControlResult.UserToken, "", []string{updateSpendingControlResult.LogLine1}, h.logger, h.config.ELKPath, handleErrorResponse) {
+		return
+	}
+	if responseError != nil {
+		handleErrorResponse(c, responseError)
+		return
+	}
+
+	c.JSON(http.StatusOK, updateSpendingControlResult.Response)
+}

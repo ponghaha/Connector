@@ -1,0 +1,35 @@
+[
+  {
+    "key": ["IQARRf8ZhKChCN0ODn0BHQF4cBodzi7z"],
+    "clientName": "DebtMediation",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/Collection/CollectionDetail",
+      "POST:/Api/Collection/CollectionLog"
+    ]
+  },
+  {
+    "key": ["kmIQxCNXrzAIFmfEqwu9IzYYDSiyP6Pu"],
+    "clientName": "MobileApp",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/Agreement/UpdateStatus"
+    ]
+  },
+  {
+    "key": [""],
+    "clientName": "MobileApp",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/CreditCard/GetSpendingControl"
+    ]
+  },
+  {
+    "key": [""],
+    "clientName": "MobileApp",
+    "status": "active",
+    "permissions": [
+      "POST:/Api/CreditCard/UpdateSpendingControl"
+    ]
+  }
+]
